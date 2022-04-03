@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style_registration.css') }}">
+    <title>Регистрация пользователя</title>
 </head>
 <body>
-
+    <div class="bar">
+        <a class="back" href="/">главная</a>
+    </div>
+    <div class="registration">
+        <form action="" method="post" class="registration__field">
+            {{ form.csrf_token }}
+            <h1 title="Форма регистрации на сайте">Регистрация</h1>
+            <div class="registration__field-row">
+                <div class="registration__field-row-label">
+                    <label>{{ form.name.label }}</label>
+                </div>
+                <div class="registration__field-row-input">
+                    {{ form.name(class="form-control") }}<br>
+                    {% for error in form.name.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="registration__field-row">
+                <div class="registration__field-row-label">
+                    <label>{{ form.password.label }}</label>
+                </div>
+                <div class="registration__field-row-input">
+                    {{ form.password(class="form-control", type="password") }}<br>
+                    {% for error in form.password.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="registration__field-row">
+                <div class="registration__field-row-label">
+                    <label>{{ form.password_again.label }}</label>
+                </div>
+                <div class="registration__field-row-input">
+                    {{ form.password_again(class="form-control", type="password") }}<br>
+                    {% for error in form.password.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="registration__field-row">
+                <div class="registration__field-row-label">
+                    <label>{{ form.email.label }}</label>
+                </div>
+                <div class="registration__field-row-input">
+                    {{ form.email(class="form-control", type="email") }}<br>
+                    {% for error in form.email.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="smbt-button">
+                {{ form.submit(type="submit", class="btn btn-primary") }}
+            </div>
+            <div class="error">
+                {{message}}
+            </div>
+        </form>
+    </div>
 </body>
 </html>
