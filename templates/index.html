@@ -12,7 +12,11 @@
       <a href="" class="menu__button">товар</a>
       <a href="" class="menu__button">на карте</a>
       <a href="" class="menu__button">вакансии</a>
-      <a href="/registration" class="menu__button">регистрация</a>
+      {% if current_user.is_authenticated %}
+        <a class="menu__button" href="/profile">{{ current_user.name }}</a>
+      {% else %}
+        <a class="menu__button" href="/login">войти</a>
+      {% endif %}
     </div>
   </div>
   <div class="wrapper">
