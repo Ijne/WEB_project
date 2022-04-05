@@ -1,0 +1,12 @@
+.single{
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.product_name{
+    font-family: 'Monserat', sans-serif;
+    font-size: 30px;
+}

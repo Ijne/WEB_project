@@ -6,6 +6,7 @@ from werkzeug.utils import redirect
 from data import db_session
 from data.users import User
 from forms.user import RegisterForm, LoginForm
+from data.products import Product
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -30,7 +31,7 @@ def profile():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title="Мебельный магазин 'Мебель'")
 
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -70,6 +71,13 @@ def login():
                                message="Неверный логин или пароль",
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
+
+
+@app.route('/products')
+def products():
+    db_sess = db_session.create_session()
+    all_products = db_sess.query(Product).all()
+    return render_template('products.html', products=all_products, title='Товары')
 
 
 def main():

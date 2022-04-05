@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 align="center">Все товары</h1>
+    {% for item in products %}
+        <div class="single">
+            <img src="{{url_for('static',filename='img/{{item.image_name}}')')}}">
+            <a class="product_name" href="product/{{ item.id }}">{{ item.name }}</a>
+            <p>{{ item.count }}</p>
+            <p>{{ item.price }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

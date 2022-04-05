@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style_index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style_products.css') }}">
+    <title>{{ title }}</title>
+</head>
+<body>
+  <div class="menu">
+    <div class="menu__body">
+      <a href="/" class="menu__button">главная</a>
+      <a href="products" class="menu__button">товар</a>
+      <a href="https://static-maps.yandex.ru/1.x/?ll=37.773085,55.425846&l=map&z=17&pt=37.773085,55.42584" class="menu__button">на карте</a>
+      <a href="" class="menu__button">вакансии</a>
+      {% if current_user.is_authenticated %}
+        <a class="menu__button" href="/profile">{{ current_user.name }}</a>
+      {% else %}
+        <a class="menu__button" href="/login">войти</a>
+      {% endif %}
+    </div>
+  </div>
+  <main role="main" class="container">
+      {% block content %}{% endblock %}
+  </main>
+    <footer class="footer">
+      <div class="footer_content">
+        <div class="footer_column">
+          hello
+        </div>
+        <div class="footer_column">
+          hello
+        </div>
+        <div class="footer_column">
+          hello
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
