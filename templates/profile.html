@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ url_for('static',filename='styles/style_profile.css') }}">
+  <title>Мебельный магазин "Mebel"</title>
+</head>
+<body>
+  <div class="menu">
+    <div class="menu__body">
+      <a href="/" class="menu__button">главная</a>
+      <a href="" class="menu__button">товар</a>
+      <a href="" class="menu__button">на карте</a>
+      <a href="" class="menu__button">вакансии</a>
+      <a class="menu__button" href="/logout">выйти</a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <main class="main">
+      <div class="bar">
+          <div class="bar__body">
+              <div class="bar__name">
+                  Профиль
+              </div>
+              <div class="bar__name">
+                  {{ current_user.name }}
+              </div>
+          </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

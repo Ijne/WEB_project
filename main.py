@@ -21,10 +21,15 @@ def load_user(user_id):
 
 
 @app.route('/profile')
-@login_required
 def profile():
+    return render_template('profile.html')
+
+
+@app.route('/logout')
+@login_required
+def logout():
     logout_user()
-    return redirect("/")
+    return redirect('/')
 
 
 @app.route('/')
