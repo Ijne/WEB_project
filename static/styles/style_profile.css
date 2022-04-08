@@ -39,8 +39,11 @@ body{
 }
 
 main{
-	background: grey;
+	background-image: url('/static/img/фон3.jpg');
+	background-size: cover;
 	height: 100%;
+	display: grid;
+	grid-template: 10% 90% / 1fr;
 }
 
 .bar{
@@ -53,11 +56,41 @@ main{
 	grid-template: 1fr / 10fr 1fr;
 }
 
-
 .bar__name{
 	font-family: 'Manrope', sans-serif;
 	font-size: 30px;
 	text-align: center;
-	margin-top: 10px;
-	margin-left: 20px;
+	color: white;
+	margin-top: 0.5%;
+	margin-left: 0.5%;
+}
+
+.list{
+	border: 2px solid black;
+	height: 90%;
+	width: 90%;
+	margin-left: 5%;
+}
+
+.list__body{
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.list__body::-webkit-scrollbar {
+  width: 0;
+}
+
+.list__row{
+	display: flex;
+	border: 1px solid  red;
+	width: 90%;
+	margin-left: 5%;
+	padding-bottom: 150px;
+	margin-top: 2%;
+}
+
+.list__column{
+	border: 1px solid  green;
+	padding: 80px;
 }
