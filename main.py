@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 from flask_login import LoginManager, login_required, logout_user
 from flask_login import login_user
 from werkzeug.utils import redirect
@@ -78,6 +78,20 @@ def products():
     db_sess = db_session.create_session()
     all_products = db_sess.query(Product).all()
     return render_template('products.html', products=all_products, title='Товары')
+
+
+@app.route('/products/<int:id>', methods=['GET', 'POST'])
+def single_product(id):
+    db_sess = db_session.create_session()
+    product = db_sess.query(Product).filter(Product.id == id).first()
+    if product:
+        return render_template('product.html',
+                               product_name=product.name,
+                               image_name=product.image_name,
+                               item_count=product.count,
+                               item_price=product.price)
+    else:
+        abort(404)
 
 
 def main():

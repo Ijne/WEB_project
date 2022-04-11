@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 align="center">Все товары</h1>
+    <h1 class="product_set" align="center">Все товары</h1>
     {% for item in products %}
-        <div class="single">
-            <img src="{{url_for('static',filename='img/{{item.image_name}}')')}}">
-            <a class="product_name" href="product/{{ item.id }}">{{ item.name }}</a>
-            <p>{{ item.count }}</p>
-            <p>{{ item.price }}</p>
+        <div class="container_of_product">
+            <img class="product_img" src="{{url_for('static', filename=item.image_name)}}"><br>
+            <a class="product_set" href="products/{{ item.id }}">{{ item.name }}</a>
+            <p class="product_set">Количество: {{ item.count }}</p>
+            <p class="product_set">Цена: {{ item.price }}</p>
         </div>
     {% endfor %}
 {% endblock %}
