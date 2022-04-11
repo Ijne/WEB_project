@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Manrope:wght@200&display=swap');
+
+html,body{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	display: grid;
+	grid-template: 1fr / 1fr 8fr;
+}
+
+.wrapper{
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;	
+	background: white;
+}
+
+.menu__body{
+	display: grid;
+	grid-template: repeat(5, 1fr) 10fr / 1fr;
+	height: 100%;
+}
+
+.menu__button{
+	transition-duration: 0.3s;
+	font-family: 'Manrope', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	text-decoration-line: none;
+	color: black;
+}
+
+.menu__button:hover{
+	color: grey;
+}
+
+main{
+	background: grey;
+	height: 100%;
+}
+
+.bar{
+	height: 10%;
+}
+
+.bar__body{
+	width: 100%;
+	display: grid;
+	grid-template: 1fr / 10fr 1fr;
+}
+
+
+.bar__name{
+	font-family: 'Manrope', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 20px;
+}
