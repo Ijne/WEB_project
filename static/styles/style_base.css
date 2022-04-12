@@ -44,40 +44,6 @@ html,body{
 	color: grey;
 }
 
-.header{
-	grid-area: header;
-}
-
-.header__fon{
-	margin-top: 30px;
-	display: grid;
-	grid-template: 1fr minmax(auto, 100px) minmax(auto, 100px) / minmax(auto, 200px) 1fr minmax(auto, 200px);
-}
-
-.header__img{
-	text-align: center;
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
-}
-
-.header__title{
-	font-family: 'Manrope', sans-serif;
-	font-size: 100px;
-	text-align: center;
-	grid-column: 2 / 3;
-	grid-row: 2 / 3;
-}
-
-.header__subtitle{
-	font-family: 'Manrope', sans-serif;
-	font-size: 30px;
-	text-align: center;
-	grid-column: 2 / 3;
-	grid-row: 3 / 4;
-	margin-top: 30px;
-}
-
-
 .main{
 	grid-area: main;
 	flex: 1 1 auto;

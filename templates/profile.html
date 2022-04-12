@@ -9,9 +9,8 @@
   <div class="menu">
     <div class="menu__body">
       <a href="/" class="menu__button">главная</a>
-      <a href="" class="menu__button">товар</a>
-      <a href="" class="menu__button">на карте</a>
-      <a href="" class="menu__button">вакансии</a>
+      <a href="/products" class="menu__button">товар</a>
+      <a href="https://static-maps.yandex.ru/1.x/?ll=37.773085,55.425846&l=map&z=17&pt=37.773085,55.42584" class="menu__button">на карте</a>
       <a class="menu__button" href="/logout">выйти</a>
     </div>
   </div>
@@ -29,46 +28,11 @@
       </div>
       <div class="list">
           <div class="list__body">
+              {% for item in products %}
               <div class="list__row">
-                  <div class="list__column">
-                      
-                  </div>
-                  <div class="list__column">
-                      
-                  </div>
+                
               </div>
-              <div class="list__row">
-                  <div class="list__column">
-                      
-                  </div>
-                  <div class="list__column">
-                      
-                  </div>
-              </div>
-              <div class="list__row">
-                  <div class="list__column">
-                      
-                  </div>
-                  <div class="list__column">
-                      
-                  </div>
-              </div>
-              <div class="list__row">
-                  <div class="list__column">
-                      
-                  </div>
-                  <div class="list__column">
-                      
-                  </div>
-              </div>
-              <div class="list__row">
-                  <div class="list__column">
-                      
-                  </div>
-                  <div class="list__column">
-                      
-                  </div>
-              </div>
+              {% endfor %}
           </div>
       </div>
     </main>

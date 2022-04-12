@@ -23,7 +23,9 @@ def load_user(user_id):
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    db_sess = db_session.create_session()
+    all_products = db_sess.query(Product).all()
+    return render_template('profile.html', products=all_products)
 
 
 @app.route('/logout')
@@ -100,7 +102,7 @@ def single_product(id):
 
 
 def main():
-    db_session.global_init("db/users_database.db")
+    db_session.global_init('db/users_database.db')
     app.run()
 
 
