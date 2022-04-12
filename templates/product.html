@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container_of_product">
+        <h1 class="product_set_single" align="center">{{ product_name }}</h1>
+        <img src="{{url_for('static', filename=image_name)}}">
+        <p class="product_set_single">Количество товара: {{ item_count }}</p>
+        <p class="product_set_single">Цена: {{ item_price }}</p>
+        <a class="btn btn-primary" href="/cart">Добавить в корзину</a>
+    </div>
+
+{% endblock %}

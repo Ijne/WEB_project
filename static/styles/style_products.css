@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Manrope:wght@200&display=swap');
+
+
+.single{
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.product_set{
+    font-family: 'Manrope', sans-serif;
+    font-size: 30px;
+    text-decoration-line: none;
+    color: black;
+}
+
+.container_of_product{
+    border: 1px solid black;
+}
+
+a.product_set{
+    font-size: 60px;
+}
+
+h1.product_set_single{
+    font-size: 90px;
+}
+
+.product_set_single{
+    font-family: 'Manrope', sans-serif;
+    font-size: 60px;
+}
+
+.btn-primary{
+    font-family: 'Manrope', sans-serif;
+    font-size: 30px;
+    text-align: left;    
+    text-decoration-line: none;
+    color: white;
+}
