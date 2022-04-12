@@ -51,7 +51,7 @@ html,body{
 .header__fon{
 	margin-top: 30px;
 	display: grid;
-	grid-template: 1fr minmax(auto, 100px) minmax(auto, 100px) / minmax(auto, 200px) 1fr minmax(auto, 200px);
+	grid-template: 1fr / minmax(auto, 100px) minmax(auto, 100px) minmax(auto, 200px);
 }
 
 .header__img{

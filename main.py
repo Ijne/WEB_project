@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 from flask_login import LoginManager, login_required, logout_user
 from flask_login import login_user
 from werkzeug.utils import redirect
@@ -6,6 +6,7 @@ from werkzeug.utils import redirect
 from data import db_session
 from data.users import User
 from forms.user import RegisterForm, LoginForm
+from data.products import Product
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -35,7 +36,7 @@ def logout():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title="Мебельный магазин 'Мебель'")
 
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -75,6 +76,27 @@ def login():
                                message="Неверный логин или пароль",
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
+
+
+@app.route('/products')
+def products():
+    db_sess = db_session.create_session()
+    all_products = db_sess.query(Product).all()
+    return render_template('products.html', products=all_products, title='Товары')
+
+
+@app.route('/products/<int:id>', methods=['GET', 'POST'])
+def single_product(id):
+    db_sess = db_session.create_session()
+    product = db_sess.query(Product).filter(Product.id == id).first()
+    if product:
+        return render_template('product.html',
+                               product_name=product.name,
+                               image_name=product.image_name,
+                               item_count=product.count,
+                               item_price=product.price)
+    else:
+        abort(404)
 
 
 def main():
