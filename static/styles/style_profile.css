@@ -9,7 +9,11 @@ html,body{
 
 body{
 	display: grid;
-	grid-template: 1fr / 1fr 8fr;
+	grid-template: 1fr / 1fr 6fr;
+}
+
+p{
+	text-align: center;
 }
 
 .wrapper{
@@ -66,15 +70,19 @@ main{
 }
 
 .list{
-	border: 2px solid black;
+	transition-duration: 0.3s;
 	height: 90%;
 	width: 90%;
 	margin-left: 5%;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 .list__body{
+	transition-duration: 0.3s;
 	height: 100%;
 	overflow-y: scroll;
+	display: grid;
+	grid-template: 1fr / 1fr 1fr 1fr;
 }
 
 .list__body::-webkit-scrollbar {
@@ -82,15 +90,37 @@ main{
 }
 
 .list__row{
-	display: flex;
-	border: 1px solid  red;
 	width: 90%;
 	margin-left: 5%;
 	padding-bottom: 150px;
 	margin-top: 2%;
 }
 
-.list__column{
-	border: 1px solid  green;
-	padding: 80px;
+.item_img{
+
+}
+
+.item_title{
+  font-family: 'Manrope', sans-serif;
+  font-size: 45px;
+  text-decoration-line: none;
+  color: white;
+}
+
+@media(max-width: 1200px) {
+    .list__body{
+        display: grid;
+        grid-template: 1fr / 1fr 1fr;
+    }
+
+    .menu__button{
+    	font-size: 20px;
+    }
+}
+
+@media(max-width: 900px) {
+    .list__body{
+        display: grid;
+        grid-template: 1fr / 1fr;
+    }
 }

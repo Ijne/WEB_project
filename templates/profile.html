@@ -28,11 +28,12 @@
       </div>
       <div class="list">
           <div class="list__body">
-              {% for item in products %}
-              <div class="list__row">
-                
-              </div>
-              {% endfor %}
+            {% for item in products %}
+            <div class="list__row">
+              <p class="product_img"><img src="{{url_for('static', filename=item.image_name)}}" class="product_img"></p>
+              <p class="item_title">{{ item.name }}</p>
+            </div>
+            {% endfor %}
           </div>
       </div>
     </main>

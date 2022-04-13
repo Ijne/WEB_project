@@ -5,7 +5,8 @@ p{
 }
 
 .container_of_product{
-    border: 1px solid black;
+    display: grid;
+    grid-template: 1fr / 1fr 2fr;
 }
 
 .product_body{
@@ -46,6 +47,12 @@ p{
     margin: 30px;
 }
 
+.description_of_product{
+    font-family: 'Manrope', sans-serif;
+    font-size: 30px;
+    margin-top: 60px;  
+}
+
 @media(max-width: 1200px) {
     .product_body{
         display: grid;
@@ -58,4 +65,8 @@ p{
         display: grid;
         grid-template: 1fr / 1fr;
     }
+}
+
+.btn-secondary{
+    margin: 20px;
 }

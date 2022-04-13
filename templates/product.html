@@ -2,11 +2,20 @@
 
 {% block content %}
     <div class="container_of_product">
-        <h1 class="product_set_single" align="center">{{ product_name }}</h1>
-        <img src="{{url_for('static', filename=image_name)}}">
-        <p class="product_set_single">Количество товара: {{ item_count }}</p>
-        <p class="product_set_single">Цена: {{ item_price }}</p>
-        <a class="btn btn-primary" href="/cart">Добавить в корзину</a>
+        <div class="row_product">
+            <p class="product_img"><img src="{{url_for('static', filename=image_name)}}" class="product_img"></p>
+            <p class="product_title">{{ product_name }}</p>
+            <p class="product_set">Количество: {{ item_count }}</p>
+            <p class="product_set">Цена: {{ item_price }}</p>
+            <p><a class="btn btn-secondary" href="/cart">Добавить в корзину</a></p>
+        </div>
+        <div class="description_of_product">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
     </div>
-
 {% endblock %}
