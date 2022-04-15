@@ -1,5 +1,5 @@
 from flask import Flask, render_template, abort
-from flask_login import LoginManager, login_required, logout_user
+from flask_login import LoginManager, login_required, logout_user, current_user
 from flask_login import login_user
 from werkzeug.utils import redirect
 
@@ -24,7 +24,14 @@ def load_user(user_id):
 @app.route('/profile')
 def profile():
     db_sess = db_session.create_session()
-    all_products = db_sess.query(Product).all()
+    user_basket = db_sess.query(User).filter(User.id == current_user.id).first().basket
+    user_basket = str(user_basket)
+    products = []
+    if user_basket:
+        user_basket = list(user_basket)
+        for product in user_basket:
+            products.append(int(product))
+    all_products = db_sess.query(Product).filter(Product.id.in_(products)).all()
     return render_template('profile.html', products=all_products)
 
 
@@ -96,9 +103,22 @@ def single_product(id):
                                product_name=product.name,
                                image_name=product.image_name,
                                item_count=product.count,
-                               item_price=product.price)
+                               item_price=product.price,
+                               item_id=product.id)
     else:
         abort(404)
+
+
+@app.route('/cart/<int:id>')
+def cart(id):
+    db_sess = db_session.create_session()
+    user_basket = db_sess.query(User).filter(User.id == current_user.id).first().basket
+    user_basket = str(user_basket) + f'{str(id) } '
+    user = db_sess.query(User).filter(User.id == current_user.id).first()
+    user.basket = user_basket
+    db_sess.merge(user)
+    db_sess.commit()
+    return redirect('/profile')
 
 
 def main():
