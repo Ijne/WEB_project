@@ -16,6 +16,10 @@ p{
 	text-align: center;
 }
 
+a{
+	text-align: center;
+}
+
 .wrapper{
 	min-height: 100%;
 	display: flex;
@@ -68,6 +72,8 @@ main{
 	margin-top: 0.5%;
 	margin-left: 0.5%;
 }
+
+
 
 .list{
 	transition-duration: 0.3s;
@@ -123,4 +129,22 @@ main{
         display: grid;
         grid-template: 1fr / 1fr;
     }
+}
+
+.message {
+	font-family: 'Manrope', sans-serif;
+  	font-size: 25px;
+  	color: white;
+  	text-align: left;
+}
+
+.back-m{
+	transition-duration: 0.3s;
+	font-family: 'Manrope', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	text-decoration-line: none;
+	color: white;
+	margin-left: 30px;
+	margin-right: 20px;
 }

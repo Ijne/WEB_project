@@ -1,12 +1,16 @@
+import json
+
 from flask import Flask, render_template, abort
 from flask_login import LoginManager, login_required, logout_user, current_user
 from flask_login import login_user
 from werkzeug.utils import redirect
-
+import requests
 from data import db_session
 from data.users import User
 from forms.user import RegisterForm, LoginForm
 from data.products import Product
+from data.orders import Orders
+from forms.order import OrderForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -19,20 +23,6 @@ login_manager.init_app(app)
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
-
-
-@app.route('/profile')
-def profile():
-    db_sess = db_session.create_session()
-    user_basket = db_sess.query(User).filter(User.id == current_user.id).first().basket
-    user_basket = str(user_basket)
-    products = []
-    if user_basket:
-        user_basket = list(user_basket)
-        for product in user_basket:
-            products.append(int(product))
-    all_products = db_sess.query(Product).filter(Product.id.in_(products)).all()
-    return render_template('profile.html', products=all_products)
 
 
 @app.route('/logout')
@@ -87,6 +77,34 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
+@app.route('/ordering/<int:order>', methods=['GET', 'POST'])
+def ordering(order):
+    form = OrderForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user_basket = [int(x) for x in str(order)]
+        all_products = db_sess.query(Product).filter(Product.id.in_(user_basket)).all()
+        user = db_sess.query(User).filter(User.id == current_user.id).first()
+        if all_products and user:
+            orders = Orders()
+            product_name = ''
+            total_price = 0
+            for item in all_products:
+                product_name += f'{item.name}, '
+                total_price += item.price
+            orders.name = product_name
+            orders.total_price = total_price
+            orders.email = form.email.data
+            orders.phone_number = form.phone_number.data
+            orders.name = f'{form.second_name.data} {form.name.data}'
+            orders.phone_number = form.phone_number
+            user.basket = ''
+            db_sess.add(orders)
+            db_sess.commit()
+            return redirect('/profile')
+        return render_template('ordering.html')
+
+
 @app.route('/products')
 def products():
     db_sess = db_session.create_session()
@@ -104,7 +122,27 @@ def single_product(id):
                                image_name=product.image_name,
                                item_count=product.count,
                                item_price=product.price,
-                               item_id=product.id)
+                               item_id=product.id,
+                               added=False)
+    else:
+        abort(404)
+
+
+@app.route('/profile')
+def profile():
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.id == current_user.id).first()
+    if user:
+        user_basket = [x for x in str(user.basket)]
+        user_basket = [int(i) for i in user_basket]
+        total_price = 0
+        all_products = db_sess.query(Product).filter(Product.id.in_(user_basket)).all()
+        for item in all_products:
+            total_price += item.price
+        return render_template('profile.html',
+                               products=all_products,
+                               total_price=total_price,
+                               user=user)
     else:
         abort(404)
 
@@ -112,13 +150,20 @@ def single_product(id):
 @app.route('/cart/<int:id>')
 def cart(id):
     db_sess = db_session.create_session()
+    product = db_sess.query(Product).filter(Product.id == id).first()
     user_basket = db_sess.query(User).filter(User.id == current_user.id).first().basket
     user_basket = str(user_basket) + f'{str(id) } '
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     user.basket = user_basket
     db_sess.merge(user)
     db_sess.commit()
-    return redirect('/profile')
+    return render_template('product.html',
+                           product_name=product.name,
+                           image_name=product.image_name,
+                           item_count=product.count,
+                           item_price=product.price,
+                           item_id=product.id,
+                           added=True)
 
 
 def main():

@@ -70,3 +70,8 @@ p{
 .btn-secondary{
     margin: 20px;
 }
+
+.message {
+        font-family: 'Manrope', sans-serif;
+        color:  limegreen;
+}
