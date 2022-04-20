@@ -1,5 +1,91 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style_ordering.css') }}">
+    <title>Оформление заказа</title>
+</head>
+<body>
+    <div class="bar">
+        <a class="back" href="/">главная</a>
+    </div>
+    <div class="ordering">
+        <div class="ordering__body">
+            <form action="" method="post" class="ordering__field">
+                <h1>Оформить заказ</h1>
+                <div class="ordering__field-row">
+                    <div class="ordering__field-row-label">
+                        <label>{{ form.name.label }}</label>
+                    </div>
+                    <div class="ordering__field-row-input">
+                        {{ form.name(class="form-control") }}<br>
+                        {% for error in form.name.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="ordering__field-row">
+                    <div class="ordering__field-row-label">
+                        <label>{{ form.second_name.label }}</label>
+                    </div>
+                    <div class="ordering__field-row-input">
+                        {{ form.second_name(class="form-control") }}<br>
+                        {% for error in form.second_name.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="ordering__field-row">
+                    <div class="ordering__field-row-label">
+                        <label>{{ form.email.label }}</label>
+                    </div>
+                    <div class="ordering__field-row-input">
+                        {{ form.email(class="form-control", type="email") }}<br>
+                        {% for error in form.email.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="ordering__field-row">
+                    <div class="ordering__field-row-label">
+                        <label>{{ form.phone_number.label }}</label>
+                    </div>
+                    <div class="ordering__field-row-input">
+                        {{ form.phone_number(class="form-control", type="tel", pattern="8[0-9]{3}[0-9]{3}[0-9]{4}") }}<br>
+                        {% for error in form.phone_number.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="ordering__field-row">
+                    <div class="ordering__field-row-label">
+                        <label>{{ form.address.label }}</label>
+                    </div>
+                    <div class="ordering__field-row-input">
+                        {{ form.address(class="form-control", type="address", pattern="^[А-Яа-яЁё];^[А-Яа-яЁё];[0-9999];[0-9999]") }}<br>
+                        {% for error in form.address.errors %}
+                            <p class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="smbt-button">
+                    {{ form.submit(type="submit", class="btn btn-primary") }}
+                </div>
+                <div class="error">
+                    {{message}}
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

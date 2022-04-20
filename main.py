@@ -102,7 +102,7 @@ def ordering(order):
             db_sess.add(orders)
             db_sess.commit()
             return redirect('/profile')
-        return render_template('ordering.html')
+    return render_template('ordering.html', form=form)
 
 
 @app.route('/products')

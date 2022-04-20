@@ -1,0 +1,103 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Manrope:wght@200&display=swap');
+
+html,body{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-image: url('/static/img/фон2.jpg');
+}
+
+.wrapper{
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	background: white;
+}
+
+h1{
+	font-family: 'Manrope', sans-serif;
+	font-size: 40px;
+}
+
+.bar{
+	margin-top: 20px;
+}
+
+.back{
+	transition-duration: 0.3s;
+	font-family: 'Manrope', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	text-decoration-line: none;
+	margin-left: 30px;
+	color: white;
+}
+
+.back:hover{
+	color: grey;
+}
+
+.ordering{
+	width: 30%;
+	margin-left: 35%;
+	margin-top: 7%;
+	background: white;
+}
+
+.ordering__field{
+	display: grid;
+	grid-template: repeat(6, 1fr) 0.05fr / 2fr;
+	box-shadow: 0px 0px 10px black;
+	text-align: center;
+}
+
+.ordering__field-row{
+	display: grid;
+	grid-template: repeat(2, 1fr) / 1fr;
+}
+
+.ordering__field-row-label{
+	font-family: 'Manrope', sans-serif;
+	font-size: 20px;
+}
+
+input{
+	font-family: 'Manrope', sans-serif;
+	font-size: 20px;
+}
+
+.ordering__field-row-input{
+	margin-bottom: 10px;
+}
+
+.smbt-button{
+	font-family: 'Manrope', sans-serif;
+	font-size: 30px;
+}
+
+.back-m{
+	transition-duration: 0.3s;
+	font-family: 'Manrope', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	text-decoration-line: none;
+	color: grey;
+	margin-left: 30px;
+	margin-right: 20px;
+}
+
+.back-m:hover{
+	color: black;
+}
+
+.error{
+	font-family: 'Manrope', sans-serif;
+	font-size: 20px;
+	margin-bottom: 15px;
+	color: #800900;
+}
