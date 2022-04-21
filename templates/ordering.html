@@ -12,6 +12,7 @@
     <div class="ordering">
         <div class="ordering__body">
             <form action="" method="post" class="ordering__field">
+                {{ form.csrf_token }}
                 <h1>Оформить заказ</h1>
                 <div class="ordering__field-row">
                     <div class="ordering__field-row-label">
@@ -70,7 +71,7 @@
                         <label>{{ form.address.label }}</label>
                     </div>
                     <div class="ordering__field-row-input">
-                        {{ form.address(class="form-control", type="address", pattern="^[А-Яа-яЁё];^[А-Яа-яЁё];[0-9999];[0-9999]") }}<br>
+                        {{ form.address(class="form-control", type="address") }}<br>
                         {% for error in form.address.errors %}
                             <p class="alert alert-danger" role="alert">
                                 {{ error }}
@@ -79,7 +80,7 @@
                     </div>
                 </div>
                 <div class="smbt-button">
-                    {{ form.submit(type="submit", class="btn btn-primary") }}
+                    {{ form.submit(class="btn btn-primary", type="submit") }}
                 </div>
                 <div class="error">
                     {{message}}

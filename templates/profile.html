@@ -35,7 +35,10 @@
             </div>
             {% endfor %}
           </div>
-          <a class="back-m" href="/ordering/{{ user.basket }}">Сделать заказ</a>
+          {% if basket != False %}
+            <a class="back-m" href="/ordering/{{ user.basket }}">Сделать заказ</a>
+            <a class="back-m" href="/clear_cart">Очистить корзину</a>
+          {% endif %}
           <p class="message">Итоговая цена: {{ total_price }}</p>
       </div>
     </main>
