@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <title>{{ product_name }}</title>
     <div class="container_of_product">
         <div class="row_product">
             <p class="product_img"><img src="{{url_for('static', filename=image_name)}}" class="product_img"></p>

@@ -158,24 +158,22 @@ def profile():
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     if user:
-        user_basket = [int(i) for i in str(user.basket)]
-        total_price = 0
-        all_products = []
-        for i in user_basket:
-            if db_sess.query(Product).filter(Product.id == i).first():
-                all_products.append(db_sess.query(Product).filter(Product.id == i).first())
-        for item in all_products:
-            total_price += item.price
         if user.basket == '':
+            return render_template('profile.html',
+                                   basket=False)
+        else:
+            user_basket = [int(i) for i in str(user.basket)]
+            total_price = 0
+            all_products = []
+            for i in user_basket:
+                if db_sess.query(Product).filter(Product.id == i).first():
+                    all_products.append(db_sess.query(Product).filter(Product.id == i).first())
+            for item in all_products:
+                total_price += item.price
             return render_template('profile.html',
                                    products=all_products,
                                    total_price=total_price,
-                                   user=user,
-                                   basket=False)
-        return render_template('profile.html',
-                               products=all_products,
-                               total_price=total_price,
-                               user=user)
+                                   user=user)
     else:
         abort(404)
 
