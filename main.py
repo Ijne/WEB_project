@@ -148,6 +148,7 @@ def single_product(id):
                                image_name=product.image_name,
                                item_price=product.price,
                                item_id=product.id,
+                               description=product.description,
                                added=False)
     else:
         abort(404)
@@ -202,6 +203,7 @@ def cart(id):
                            image_name=product.image_name,
                            item_price=product.price,
                            item_id=product.id,
+                           description=product.description,
                            added=True)
 
 

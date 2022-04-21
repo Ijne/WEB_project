@@ -9,3 +9,4 @@ class Product(SqlAlchemyBase):
     name = sqlalchemy.Column(sqlalchemy.String, unique=True)
     price = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     image_name = sqlalchemy.Column(sqlalchemy.String)
+    description = sqlalchemy.Column(sqlalchemy.String)
