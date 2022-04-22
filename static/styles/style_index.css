@@ -7,6 +7,10 @@ html,body{
 	padding: 0;
 }
 
+p{
+	text-align: center;
+}
+
 .wrapper{
 	min-height: 100%;
 	display: flex;
@@ -120,6 +124,7 @@ html,body{
 	margin-top: 30px;
 	padding: 100px;
 	box-shadow: 2px 5px 10px 1px black;
+	font-family: 'Manrope', sans-serif;
 }
 
 @media(max-width: 1200px) {

@@ -51,7 +51,7 @@ main{
 	background-size: cover;
 	height: 100%;
 	display: grid;
-	grid-template: 10% 90% / 1fr;
+	grid-template: 10% 70% 20% / 1fr;
 }
 
 .bar{
@@ -136,19 +136,15 @@ main{
   	font-size: 25px;
   	color: white;
   	text-align: left;
+  	margin-left: 30px;
 }
 
-.back-m{
-	transition-duration: 0.3s;
-	font-family: 'Manrope', sans-serif;
-	font-size: 20px;
-	text-align: center;
-	text-decoration-line: none;
-	color: white;
+.under_bar{
+	display: grid;
+	grid-template: 1fr / 10% 10% 80%;
+	margin-left: 50px;
+}
+
+.under_bar_btn{
 	margin-left: 30px;
-	margin-right: 20px;
-}
-
-p.back-m{
-    color: red;
 }

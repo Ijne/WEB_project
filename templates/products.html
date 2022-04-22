@@ -8,7 +8,6 @@
         <div class="row_product">
             <p class="product_img"><img src="{{url_for('static', filename=item.image_name)}}" class="product_img"></p>
             <p><a class="product_title" href="products/{{ item.id }}">{{ item.name }}</a></p>
-            <p class="product_set">Количество: {{ item.count }}</p>
             <p class="product_set">Цена: {{ item.price }}</p>
         </div>
         {% endfor %}
