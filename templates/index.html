@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{{ url_for('static',filename='styles/style_index.css') }}">
+{% extends "base.html" %}
+
+{% block content %}
   <title>Мебельный магазин "Mebel"</title>
-</head>
-<body>
-  <div class="menu">
-    <div class="menu__body">
-      <a href="" class="menu__button">главная</a>
-      <a href="/products" class="menu__button">товар</a>
-      <a href="https://static-maps.yandex.ru/1.x/?ll=37.773085,55.425846&l=map&z=17&pt=37.773085,55.42584" class="menu__button">на карте</a>
-      {% if current_user.is_authenticated %}
-        <a class="menu__button" href="/profile">{{ current_user.name }}</a>
-      {% else %}
-        <a class="menu__button" href="/login">войти</a>
-      {% endif %}
-    </div>
-  </div>
   <div class="wrapper">
     <header class="header">
         <div class="header__fon">
@@ -61,19 +45,4 @@
         </div>
       </div>
     </main>
-    <footer class="footer">
-      <div class="footer_content">
-        <div class="footer_column">
-          hello
-        </div>
-        <div class="footer_column">
-          hello
-        </div>
-        <div class="footer_column">
-          hello
-        </div>
-      </div>
-    </footer>
-  </div>
-</body>
-</html>
+{% endblock %}
