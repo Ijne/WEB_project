@@ -101,3 +101,9 @@ input{
 	margin-bottom: 15px;
 	color: #800900;
 }
+
+@media(max-width: 900px) {
+	.registration__field-row{
+		width: 50%;
+	}
+}

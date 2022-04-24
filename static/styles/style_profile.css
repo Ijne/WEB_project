@@ -113,6 +113,32 @@ main{
   color: white;
 }
 
+.message {
+	font-family: 'Manrope', sans-serif;
+  	font-size: 25px;
+  	color: white;
+  	text-align: left;
+  	margin-left: 60px;
+  	grid-area: B;
+}
+
+.under_bar_btn{
+	margin-left: 30px;
+	grid-area: A;
+}
+
+.under_bar_btn2{
+	margin-left: 30px;
+	grid-area: C;
+}
+
+.under_bar{
+	display: grid;
+	grid-template-areas:
+    	"A A A A   C C C C   B B B B";
+	margin-left: 50px;
+}
+
 @media(max-width: 1200px) {
     .list__body{
         display: grid;
@@ -129,22 +155,4 @@ main{
         display: grid;
         grid-template: 1fr / 1fr;
     }
-}
-
-.message {
-	font-family: 'Manrope', sans-serif;
-  	font-size: 25px;
-  	color: white;
-  	text-align: left;
-  	margin-left: 30px;
-}
-
-.under_bar{
-	display: grid;
-	grid-template: 1fr / 10% 10% 80%;
-	margin-left: 50px;
-}
-
-.under_bar_btn{
-	margin-left: 30px;
 }
