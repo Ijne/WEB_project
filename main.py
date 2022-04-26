@@ -1,6 +1,6 @@
 from flask import Flask, render_template, abort
-from flask_login import LoginManager, login_required, logout_user, current_user
-from flask_login import login_user
+from flask_login import LoginManager, login_required, logout_user, current_user, login_user
+from flask_restful import Api
 from werkzeug.utils import redirect
 from datetime import datetime as dt
 import csv
@@ -10,9 +10,12 @@ from forms.user import RegisterForm, LoginForm
 from data.products import Product
 from data.orders import Orders
 from forms.order import OrderForm
+from data import users_api, orders_api, products_api
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+app.config['SECRET_KEY'] = 'mebel260422'
+app.config['JSON_AS_ASCII'] = False
+api = Api(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -96,7 +99,7 @@ def ordering(order):
                 product_name += f'{item.name}, '
             total_price += item.price
         orders = Orders()
-        orders.name = product_name
+        orders.order = product_name
         orders.total_price = total_price
         orders.email = form.email.data
         orders.phone_number = form.phone_number.data
@@ -209,6 +212,12 @@ def cart(id):
 
 def main():
     db_session.global_init('db/users_database.db')
+    api.add_resource(users_api.UserResource, '/api/user/<int:user_id>')
+    api.add_resource(users_api.UserListResource, '/api/user')
+    api.add_resource(orders_api.OrderResource, '/api/order/<int:order_id>')
+    api.add_resource(orders_api.OrderListResource, '/api/order')
+    api.add_resource(products_api.ProductResource, '/api/product/<int:product_id>')
+    api.add_resource(products_api.ProductListResource, '/api/product')
     app.run()
 
 
