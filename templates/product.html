@@ -7,7 +7,11 @@
             <p class="product_img"><img src="{{url_for('static', filename=image_name)}}" class="product_img"></p>
             <p class="product_title">{{ product_name }}</p>
             <p class="product_set">Цена: {{ item_price }}</p>
-            <p><a class="btn btn-secondary" href="/cart/{{ item_id }}">Добавить в корзину</a></p>
+            {% if current_user.is_authenticated %}
+                <p><a class="btn btn-secondary" href="/cart/{{ item_id }}">Добавить в корзину</a></p>
+            {% else %}
+                <p><a class="btn btn-secondary" href="/login">Войти в аккаунт</a></p>
+            {% endif %}
             {% if added == True %}
                 <p class="message">Продукт успешно добавлен в корзину</p>
             {% endif %}
