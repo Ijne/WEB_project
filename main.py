@@ -76,13 +76,13 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
-@app.route('/ordering/<int:order>', methods=['GET', 'POST'])
+@app.route('/ordering/<string:order>', methods=['GET', 'POST'])
 def ordering(order):
     form = OrderForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.id == current_user.id).first()
-        user_basket = [int(i) for i in str(order)]
+        user_basket = order.split()
         total_price = 0
         all_products = []
         for i in user_basket:
@@ -163,7 +163,7 @@ def profile():
             return render_template('profile.html',
                                    basket=False)
         else:
-            user_basket = [int(i) for i in str(user.basket)]
+            user_basket = user.basket.split()
             total_price = 0
             all_products = []
             for i in user_basket:
@@ -193,7 +193,7 @@ def cart(id):
     db_sess = db_session.create_session()
     product = db_sess.query(Product).filter(Product.id == id).first()
     user_basket = db_sess.query(User).filter(User.id == current_user.id).first().basket
-    user_basket = str(user_basket) + f'{str(id)}'
+    user_basket = str(user_basket) + f'{str(id)} '
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     user.basket = user_basket
     db_sess.merge(user)
