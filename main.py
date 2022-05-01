@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, abort
 from flask_login import LoginManager, login_required, logout_user, current_user, login_user
 from flask_restful import Api
@@ -85,7 +86,7 @@ def ordering(order):
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.id == current_user.id).first()
-        user_basket = order.split()
+        user_basket = user.basket.split(', ')
         total_price = 0
         all_products = []
         for i in user_basket:
@@ -166,7 +167,10 @@ def profile():
             return render_template('profile.html',
                                    basket=False)
         else:
-            user_basket = user.basket.split()
+            user_basket = user.basket.split(', ')
+            user_basket_string = ''
+            for x in user_basket:
+                user_basket_string += x
             total_price = 0
             all_products = []
             for i in user_basket:
@@ -177,7 +181,8 @@ def profile():
             return render_template('profile.html',
                                    products=all_products,
                                    total_price=total_price,
-                                   user=user)
+                                   user=user,
+                                   user_basket=user_basket_string)
     else:
         abort(404)
 
@@ -196,7 +201,10 @@ def cart(id):
     db_sess = db_session.create_session()
     product = db_sess.query(Product).filter(Product.id == id).first()
     user_basket = db_sess.query(User).filter(User.id == current_user.id).first().basket
-    user_basket = str(user_basket) + f'{str(id)} '
+    if user_basket == '':
+        user_basket = str(user_basket) + f'{str(id)} '
+    else:
+        user_basket = str(user_basket) + f', {str(id)}'
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     user.basket = user_basket
     db_sess.merge(user)
@@ -222,4 +230,8 @@ def main():
 
 
 if __name__ == '__main__':
+    try:
+        os.mkdir("receipts")
+    except OSError:
+        pass
     main()

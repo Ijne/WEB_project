@@ -39,7 +39,7 @@
       </div>
       {% if basket != False %}
       <div class="under_bar">
-        <p class="under_bar_btn"><a class="btn btn-secondary" href="/ordering/{{ user.basket }}">Сделать заказ</a></p>
+        <p class="under_bar_btn"><a class="btn btn-secondary" href="/ordering/{{ user_basket }}">Сделать заказ</a></p>
         <p class="under_bar_btn2"><a class="btn btn-secondary" href="/clear_cart">Очистить корзину</a></p>
         <p class="message">Итоговая цена: {{ total_price }}</p>
       </div>
