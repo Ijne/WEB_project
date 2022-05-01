@@ -202,7 +202,7 @@ def cart(id):
     product = db_sess.query(Product).filter(Product.id == id).first()
     user_basket = db_sess.query(User).filter(User.id == current_user.id).first().basket
     if user_basket == '':
-        user_basket = str(user_basket) + f'{str(id)} '
+        user_basket = str(user_basket) + f'{str(id)}'
     else:
         user_basket = str(user_basket) + f', {str(id)}'
     user = db_sess.query(User).filter(User.id == current_user.id).first()
